@@ -6,19 +6,20 @@ const commonConfig = merge([
 	{
 		entry: ['./src']
 	},
-	parts.page({ title: 'Webpack Demo' }),
-	parts.loadCSS()
+	parts.page({ title: 'Webpack Demo' })
 ]);
 
-const productionConfig = merge([]);
+const productionConfig = merge([
+	parts.extractCSS()
+]);
 
 const developmentConfig = merge([
 	{
 		entry: ['webpack-plugin-serve/client']
 	},
-	parts.devServer()
+	parts.devServer(),
+	parts.extractCSS({ options: { hmr: true } })
 ]);
-
 
 const getConfig = (mode) => {
 	switch (mode) {
