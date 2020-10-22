@@ -9,7 +9,7 @@ const commonConfig = merge([
 	parts.page({ title: 'Webpack Demo' })
 ]);
 
-const cssLoaders = [parts.tailwind()];
+const cssLoaders = [parts.autoprefix(), parts.tailwind()];
 
 const productionConfig = merge([
 	parts.extractCSS({ loaders: cssLoaders }),
