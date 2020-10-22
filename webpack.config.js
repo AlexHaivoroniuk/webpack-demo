@@ -9,8 +9,11 @@ const commonConfig = merge([
 	parts.page({ title: 'Webpack Demo' })
 ]);
 
+const cssLoaders = [parts.tailwind()];
+
 const productionConfig = merge([
-	parts.extractCSS()
+	parts.extractCSS({ loaders: cssLoaders }),
+	parts.eliminateUnusedCSS()
 ]);
 
 const developmentConfig = merge([
@@ -18,7 +21,7 @@ const developmentConfig = merge([
 		entry: ['webpack-plugin-serve/client']
 	},
 	parts.devServer(),
-	parts.extractCSS({ options: { hmr: true } })
+	parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders }),
 ]);
 
 const getConfig = (mode) => {
